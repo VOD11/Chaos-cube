@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CHAOS CUBE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<section id="menu" class="screen active">
+  <header class="topbar">
+    <button class="chip" data-go="profile" id="chipProfile"><span class="mini-cube" id="chipCube"></span><span id="chipName">Player</span></button>
+    <div class="stats"><span class="pill">Lv <b id="lvl">1</b></span><span class="pill coin">● <b id="coins">0</b></span></div>
+  </header>
+  <div class="hero">
+    <div class="cube big" id="heroCube"><i class="eye l"></i><i class="eye r"></i><i class="mouth"></i></div>
+    <h1>CHAOS<br>CUBE</h1>
+    <p class="tag">One more round. One more chaos.</p>
+  </div>
+  <nav class="menu-actions">
+    <button class="btn primary" id="btnPlay">Play</button>
+    <div class="row2">
+      <button class="btn orange" id="btnCreate">Create room</button>
+      <button class="btn cyan" data-go="join">Join room</button>
+    </div>
+    <div class="row3">
+      <button class="btn ghost locked" data-lock="Shop opens in Stage 4 with coins and cosmetics.">Shop</button>
+      <button class="btn ghost" data-go="profile">Profile</button>
+      <button class="btn ghost" data-go="settings">Settings</button>
+    </div>
+  </nav>
+  <div class="daily locked" data-lock="Daily challenges arrive in Stage 4."><b>Daily challenge</b><span>Unlocks in Stage 4</span></div>
+</section>
+
+<section id="profile" class="screen">
+  <button class="back" data-go="menu">‹ Back</button>
+  <h2>Your profile</h2>
+  <label class="field">Name<input id="inName" maxlength="16" autocomplete="off" placeholder="Pick a name"></label>
+  <div class="field">Cube
+    <div id="avatars" class="avatars" role="radiogroup" aria-label="Cube color"></div>
+  </div>
+  <button class="btn primary" id="saveProfile">Save profile</button>
+</section>
+
+<section id="join" class="screen">
+  <button class="back" data-go="menu">‹ Back</button>
+  <h2>Join a room</h2>
+  <label class="field">Room code<input id="inCode" maxlength="6" autocomplete="off" autocapitalize="characters" placeholder="ABC123" class="code"></label>
+  <p class="err" id="joinErr"></p>
+  <button class="btn cyan" id="btnJoin">Join</button>
+</section>
+
+<section id="settings" class="screen">
+  <button class="back" data-go="menu">‹ Back</button>
+  <h2>Settings</h2>
+  <label class="field switch"><span>Sound</span><input type="checkbox" id="sndOn"></label>
+  <label class="field">Volume<input type="range" id="vol" min="0" max="100"></label>
+  <label class="field switch"><span>Reduce motion</span><input type="checkbox" id="redMotion"></label>
+</section>
+
+<section id="lobby" class="screen">
+  <header class="topbar"><button class="back" id="btnLeave">‹ Leave</button><button class="pill code-pill" id="btnCopy" title="Copy room link"><b id="roomCode">------</b> Copy</button></header>
+  <h2>Lobby <small id="count"></small></h2>
+  <ul id="players" class="players"></ul>
+  <div id="hostPanel" class="panel">
+    <h3>Game settings</h3>
+    <label class="field">Mode<select id="sMode"><option value="classic">Classic Chaos</option><option value="competitive">Competitive</option><option value="social">Social Chaos</option><option value="custom">Custom Party</option></select></label>
+    <label class="field">Rounds<select id="sRounds"><option>3</option><option>5</option><option>7</option><option>10</option></select></label>
+    <label class="field">Round length<select id="sSecs"><option value="15">15 s</option><option value="30">30 s</option><option value="45">45 s</option><option value="60">60 s</option></select></label>
+    <label class="field">Chaos<select id="sChaos"><option value="off">Off</option><option value="low">Low</option><option value="normal">Normal</option><option value="high">High</option></select></label>
+    <label class="field">Max players<select id="sMax"></select></label>
+  </div>
+  <div id="guestPanel" class="panel"><h3>Game settings</h3><p id="settingsText"></p></div>
+  <button class="btn primary" id="btnStart">Start game</button>
+  <p class="hint" id="startHint"></p>
+</section>
+
+<div id="countdown" aria-live="assertive"><span id="cdNum">3</span></div>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
